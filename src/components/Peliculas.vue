@@ -5,6 +5,7 @@ import Lista from './Lista.vue'
 <template>
     <div v-if="loading" class="loading">Loading...</div>
     <div v-if="error" class="error">{{ error }}</div>
+    <div v-if="data" class="name">{{ name }}</div>
     <Lista v-if="data" v-for="(pelicula, index) in data">
         <template #icon>
             {{ index + 1 }}
@@ -28,7 +29,8 @@ export default {
         return {
             loading: false,
             data: null,
-            error: null
+            error: null,
+            name: null,
         }
     },
     created() {
@@ -49,9 +51,11 @@ export default {
             this.loading = true
             try {
                 const peliculas = [];
+                
                 const id = (this.$route.params.id ? this.$route.params.id : 1) - 1;
                 const page = this.$route.params.page ? this.$route.params.page : 1;
                 const { data } = await axios.get(`${"https://swapi.dev/api/people/?page=" + page}`);
+                this.name = data.results[id].name;;
                 const films = data.results[id].films;
                 for (const result of films) {
                     const { data } = await axios.get(result);
@@ -76,5 +80,11 @@ export default {
 .error {
     font-size: 1.5em;
     color: red;
+}
+
+.name{
+    margin: 10px;
+    font-size: 1.5em;
+    color: rgb(255, 225, 0);
 }
 </style>
