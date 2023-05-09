@@ -15,7 +15,7 @@ import Lista from './Lista.vue'
     <strong>Genero: </strong><span>{{ personajes.gender }}</span>
     <template #button>
       <RouterLink
-      :to="'/peliculas/' + this.$route.params.id +'/'+(index+1)">Ver Films</RouterLink>
+      :to="'/peliculas/' + (this.$route.params.id?this.$route.params.id:1) +'/'+(index+1)">Ver Films</RouterLink>
     </template>
   </Lista>
 </template>
