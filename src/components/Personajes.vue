@@ -53,6 +53,7 @@ export default {
         this.data = data.results;
         this.loading = false;
       } catch (error) {
+        this.loading = false;
         this.error = "Error al intentar cargar la informacion, intente mas tarde"
       }
     },
