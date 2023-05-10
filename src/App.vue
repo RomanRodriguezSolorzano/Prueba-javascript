@@ -1,6 +1,6 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import Mensaje from './components/MensajeBienvienida.vue'
+import Mensaje from './components/Mensaje.vue'
 </script>
 
 <template>
